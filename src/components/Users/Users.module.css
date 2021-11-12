@@ -1,0 +1,20 @@
+li {
+  border: 1px solid rgba(119, 117, 117, 0.842);
+  border-radius: 5px;
+  list-style: none;
+  width: 80%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  
+}
+
+.informations {
+  display: flex;
+  justify-content: space-between;
+  padding: 2%;
+  
+}
+
+.informations span {
+  font-weight: bold;
+}
