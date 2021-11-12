@@ -1,0 +1,43 @@
+.container{
+  margin:0 auto;
+  width: 60%;
+  border: 1px solid rgb(43, 41, 41)
+}
+
+.container .formsMainDiv{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.formsMainDiv .inputDiv{
+  width: 70%;
+  margin-bottom:15px;
+}
+
+.formsMainDiv .checkboxDiv{
+  width: 70%;
+  margin-bottom:15px;
+}
+
+.formsMainDiv .checkboxDiv input{
+  margin-right:8px;
+}
+
+
+.formsMainDiv .inputDiv input, .formsMainDiv .inputDiv select{
+  width: 100%;
+  padding:5px 0px;
+  margin-top:10px;
+}
+
+.formsMainDiv{
+  margin-top:30px;
+}
+
+.formButton{
+  background-color:rgb(43, 41, 41);
+  padding:10px 40px;
+  color:white
+}
