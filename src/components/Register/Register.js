@@ -2,7 +2,7 @@ import SectionTitle from "../SectionTitle/SectionTitle";
 import styles from './Register.module.css'
 import { useFormik } from "formik";
 
-const Register = ({setUsuarios, usuarios}) =>{
+const Register = ({setUsuarios, usuarios, id, setId}) =>{
   const formik = useFormik ({
     initialValues:
     {
@@ -10,11 +10,14 @@ const Register = ({setUsuarios, usuarios}) =>{
       lastName: '',
       email: '',
       address: '',
-      phone: ''
+      phone: '',
+      id: 0
     }, 
     onSubmit: values => {
-      console.log(setUsuarios);
+      values.id = id;
+      setId(id+1);
       setUsuarios([...usuarios, values]);
+      formik.resetForm();
       console.log(usuarios);
     }
   })

@@ -5,10 +5,11 @@ import { useState } from 'react';
 
 function App() {
   const [usuarios, setUsuarios] = useState([]);
+  const [id, setId] = useState(0);
 
   return (
     <>
-      <Register setUsuarios={setUsuarios} usuarios={usuarios}/>
+      <Register setUsuarios={setUsuarios} usuarios={usuarios} id={id} setId={setId}/>
       <UserList usuarios={usuarios}/>
     </>
   );

@@ -10,7 +10,7 @@ const UserList = ({usuarios}) =>{
         <Users primeiroNome='Joãozinho' ultimoNome='Alvares' email='joazinho@dbc.com' endereco='Rua dos Bobos, n. 0' telefone='99455454'/>
 
         {usuarios.map(usuario => (
-          <Users primeiroNome={usuario.firstName} ultimoNome={usuario.lastName} email={usuario.email} endereco={usuario.address} telefone={usuario.phone}/>
+          <Users primeiroNome={usuario.firstName} ultimoNome={usuario.lastName} email={usuario.email} endereco={usuario.address} telefone={usuario.phone} key={usuario.id}/>
         ))}
       </ul>
       
