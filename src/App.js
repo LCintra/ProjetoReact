@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 function App() {
   const [usuarios, setUsuarios] = useState([]);
-  const [id, setId] = useState(0);
+  const [id, setId] = useState(1);
 
   return (
     <>
