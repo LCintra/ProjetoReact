@@ -2,9 +2,30 @@ import SectionTitle from "../SectionTitle/SectionTitle";
 import styles from './Register.module.css'
 import { useFormik } from "formik";
 import InputMask from "react-input-mask";
+import { useEffect } from "react";
 
 
-const Register = ({setUsuarios, usuarios, id, setId}) =>{
+const Register = ({setUsuarios, usuarios, id, setId,usuarioEditar,setModoEditar, modoEditar}) =>{
+  let valoresIniciais
+  if(modoEditar){
+    valoresIniciais = {
+      firstName: usuarioEditar.primeiroNome,
+      lastName: usuarioEditar.ultimoNome,
+      email: usuarioEditar.email,
+      address: usuarioEditar.endereco,
+      phone: usuarioEditar.telefone,
+      id: usuarioEditar.id
+    }
+  } else{
+    valoresIniciais = {
+      firstName: '',
+      lastName: '',
+      email: '',
+      address: '',
+      phone: '',
+      id: 1
+    }
+  }
   const validate = values => {
     const errors = {}
     if(!values.firstName){
@@ -43,22 +64,23 @@ const Register = ({setUsuarios, usuarios, id, setId}) =>{
   }
 
   const formik = useFormik ({
-    initialValues:
-    {
-      firstName: '',
-      lastName: '',
-      email: '',
-      address: '',
-      phone: '',
-      id: 1
-    }, 
+    initialValues: valoresIniciais,
     validate,
+    enableReinitialize: true,
     onSubmit: values => {
-      values.id = id;
+      if(!modoEditar){
+        values.id = id;
+        setUsuarios([...usuarios, values]);
+      } else {
+        let user = usuarios.find(usuario => usuario.id == usuarioEditar.id)
+        console.log(user)
+        let posicao = usuarios.indexOf(user)
+        usuarios = usuarios.splice(posicao,1,{firstName:values.firstName,lastName:values.lastName,email:values.email,address:values.address,phone:values.phone,id:id})
+        setModoEditar(false)
+      }
       setId(id+1);
-      setUsuarios([...usuarios, values]);
+      console.log(usuarios)
       formik.resetForm();
-      console.log(usuarios);
     }
   })
 
@@ -69,30 +91,30 @@ const Register = ({setUsuarios, usuarios, id, setId}) =>{
       <div className={styles.inputDiv}>
         <label htmlFor="firstName">Primeiro Nome*</label>
         <input value={formik.values.firstName} onChange={formik.handleChange} name="firstName" type="text"></input>
-        {formik.errors.firstName ? <div>{formik.errors.firstName}</div> : null}
+        {formik.errors.firstName ? <div className={styles.errorMessage}>{formik.errors.firstName}</div> : null}
       </div>
       <div className={styles.inputDiv}>
         <label htmlFor="lastName">Último Nome*</label>
         <input value={formik.values.lastName} onChange={formik.handleChange} type="text" name="lastName"></input>
-        {formik.errors.lastName ? <div>{formik.errors.lastName}</div> : null}
+        {formik.errors.lastName ? <div className={styles.errorMessage}>{formik.errors.lastName}</div> : null}
       </div>
       <div className={styles.inputDiv}>
         <label htmlFor="email">Email*</label>
         <input value={formik.values.email} onChange={formik.handleChange} name="email" type="email"></input>
-        {formik.errors.email ? <div>{formik.errors.email}</div> : null}
+        {formik.errors.email ? <div className={styles.errorMessage}>{formik.errors.email}</div> : null}
       </div>
       <div className={styles.inputDiv}>
         <label htmlFor="address">Endereço*</label>
         <input value={formik.values.address} onChange={formik.handleChange} type="text" name="address"></input>
-        {formik.errors.address ? <div>{formik.errors.address}</div> : null}
+        {formik.errors.address ? <div className={styles.errorMessage}>{formik.errors.address}</div> : null}
       </div>
       <div className={styles.inputDiv}>
         <label htmlFor="phone">Telefone*</label>
         <InputMask mask="(99) 99999-9999" value={formik.values.phone} onChange={formik.handleChange} type="text" name="phone"></InputMask>
-        {formik.errors.phone ? <div>{formik.errors.phone}</div> : null}
+        {formik.errors.phone ? <div className={styles.errorMessage}>{formik.errors.phone}</div> : null}
       </div>
       <div className={styles.inputDiv}>
-        <button className={styles.formButton} type="submit">Cadastrar</button>
+        {modoEditar ? <button className={styles.formButton}>Editar</button> : <button className={styles.formButton} type="submit">Cadastrar</button>}
       </div>
     </form>
   </div>
