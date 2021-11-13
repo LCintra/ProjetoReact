@@ -1,13 +1,10 @@
 import SectionTitle from "../SectionTitle/SectionTitle";
 import styles from './Register.module.css'
 import { useFormik } from "formik";
+import InputMask from "react-input-mask";
+
 
 const Register = ({setUsuarios, usuarios, id, setId}) =>{
-
-  const colocarMascaraTelefone = (e) =>{
-    console.log(e.target.value)
-  }
-
   const validate = values => {
     const errors = {}
     if(!values.firstName){
@@ -38,10 +35,9 @@ const Register = ({setUsuarios, usuarios, id, setId}) =>{
 
     if(!values.phone){
       errors.phone = 'Campo Obrigatório'
-    } 
-    // else if(!values.phone.match(/^([0-9]{2})([0-9]{4,5})([0-9]{4})$/)){
-    //   errors.phone = 'Insira um número de telefone válido'
-    // }
+    } else if(values.phone.split('').some(caracter => caracter == '_')){
+      errors.phone = 'Telefone Inválido'
+    }
 
     return errors
   }
@@ -92,7 +88,7 @@ const Register = ({setUsuarios, usuarios, id, setId}) =>{
       </div>
       <div className={styles.inputDiv}>
         <label htmlFor="phone">Telefone*</label>
-        <input value={formik.values.phone} onChange={formik.handleChange} type="text" name="phone"></input>
+        <InputMask mask="(99) 99999-9999" value={formik.values.phone} onChange={formik.handleChange} type="text" name="phone"></InputMask>
         {formik.errors.phone ? <div>{formik.errors.phone}</div> : null}
       </div>
       <div className={styles.inputDiv}>
