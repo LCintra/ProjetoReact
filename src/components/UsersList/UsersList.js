@@ -8,7 +8,7 @@ const UserList = ({usuarios,setUsuarioEditar,setModoEditar}) =>{
       <SectionTitle titulo="Usuários"/>
       <ul>
         {usuarios.map(usuario => (
-          <Users setModoEditar={setModoEditar} setUsuarioEditar={setUsuarioEditar} primeiroNome={usuario.firstName} ultimoNome={usuario.lastName} email={usuario.email} endereco={usuario.address} telefone={usuario.phone} id={usuario} key={usuario.id}/>
+          <Users setModoEditar={setModoEditar} setUsuarioEditar={setUsuarioEditar} primeiroNome={usuario.firstName} ultimoNome={usuario.lastName} email={usuario.email} endereco={usuario.address} telefone={usuario.phone} id={usuario.id} key={usuario.id}/>
         ))}
       </ul>
       

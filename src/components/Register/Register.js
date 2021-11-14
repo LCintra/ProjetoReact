@@ -2,7 +2,6 @@ import SectionTitle from "../SectionTitle/SectionTitle";
 import styles from './Register.module.css'
 import { useFormik } from "formik";
 import InputMask from "react-input-mask";
-import { useEffect } from "react";
 
 
 const Register = ({setUsuarios, usuarios, id, setId,usuarioEditar,setModoEditar, modoEditar}) =>{
@@ -71,15 +70,13 @@ const Register = ({setUsuarios, usuarios, id, setId,usuarioEditar,setModoEditar,
       if(!modoEditar){
         values.id = id;
         setUsuarios([...usuarios, values]);
+        setId(id+1);
       } else {
-        let user = usuarios.find(usuario => usuario.id == usuarioEditar.id)
-        console.log(user)
-        let posicao = usuarios.indexOf(user)
-        usuarios = usuarios.splice(posicao,1,{firstName:values.firstName,lastName:values.lastName,email:values.email,address:values.address,phone:values.phone,id:id})
+        let posicao = usuarios.findIndex(user => user.id == values.id)
+        usuarios.splice(posicao,1,{firstName:values.firstName,lastName:values.lastName,email:values.email,address:values.address,phone:values.phone,id:values.id})
+        setUsuarios(usuarios)
         setModoEditar(false)
       }
-      setId(id+1);
-      console.log(usuarios)
       formik.resetForm();
     }
   })
@@ -114,7 +111,7 @@ const Register = ({setUsuarios, usuarios, id, setId,usuarioEditar,setModoEditar,
         {formik.errors.phone ? <div className={styles.errorMessage}>{formik.errors.phone}</div> : null}
       </div>
       <div className={styles.inputDiv}>
-        {modoEditar ? <button className={styles.formButton}>Editar</button> : <button className={styles.formButton} type="submit">Cadastrar</button>}
+        {modoEditar ? <button type="submit" className={styles.formButton}>Editar</button> : <button className={styles.formButton} type="submit">Cadastrar</button>}
       </div>
     </form>
   </div>
