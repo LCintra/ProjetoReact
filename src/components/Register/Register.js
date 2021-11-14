@@ -31,7 +31,7 @@ const Register = ({setUsuarios, usuarios, id, setId,usuarioEditar,setModoEditar,
       errors.firstName = 'Campo Obrigatório'
     } else if(values.firstName.length > 15){
       errors.firstName = 'Tamanho máximo de 15 caracteres'
-    } else if(!values.firstName.match(/^[a-zA-Z]+$/)){
+    } else if(!values.firstName.match(/^[A-zÀ-ÖØ-öø-ÿ]+$/)){
       errors.firstName = 'Apenas letras são permitidas'
     }
 
@@ -39,7 +39,7 @@ const Register = ({setUsuarios, usuarios, id, setId,usuarioEditar,setModoEditar,
       errors.lastName = 'Campo Obrigatório'
     } else if(values.lastName.length > 15){
       errors.lastName = 'Tamanho máximo de 15 caracteres'
-    } else if(!values.lastName.match(/^[a-zA-Z]+$/)){
+    } else if(!values.lastName.match(/^[A-zÀ-ÖØ-öø-ÿ]+$/)){
       errors.lastName = 'Apenas letras são permitidas'
     }
 
