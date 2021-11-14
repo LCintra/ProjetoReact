@@ -1,7 +1,7 @@
 import style from "../Users/Users.module.css"
 import {FaTrashAlt, FaRegEdit} from 'react-icons/fa'
 
-function Users ({primeiroNome, ultimoNome, email, endereco, telefone, id, setUsuarioEditar,setModoEditar}) {
+function Users ({primeiroNome, ultimoNome, email, endereco, telefone, id, setUsuarioEditar,setModoEditar, usuarios, setUsuarios}) {
   return (
     <>
       <li id={id}>
@@ -18,8 +18,8 @@ function Users ({primeiroNome, ultimoNome, email, endereco, telefone, id, setUsu
               setModoEditar(true)
               setUsuarioEditar({primeiroNome:primeiroNome,ultimoNome:ultimoNome,email:email,endereco:endereco,telefone:telefone,id:id})
             }}/>
-            <FaTrashAlt onClick={(e)=>{
-              console.log(e.target.parentNode.parentNode.id)
+            <FaTrashAlt onClick={(e)=>{              
+              setUsuarios(usuarios.filter(usuario => usuario.id != id));
             }}/>
           </div>
         </li>

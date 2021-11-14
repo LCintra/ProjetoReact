@@ -11,7 +11,7 @@ function App() {
   return (
     <>
       <Register setModoEditar={setModoEditar} modoEditar={modoEditar} usuarioEditar={usuarioEditar} setUsuarios={setUsuarios} usuarios={usuarios} id={id} setId={setId}/>
-      <UserList setModoEditar={setModoEditar} setUsuarioEditar={setUsuarioEditar} usuarios={usuarios}/>
+      <UserList setModoEditar={setModoEditar} setUsuarioEditar={setUsuarioEditar} usuarios={usuarios} setUsuarios={setUsuarios}/>
     </>
   );
 }
