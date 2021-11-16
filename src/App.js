@@ -10,8 +10,18 @@ function App() {
   const [modoEditar,setModoEditar] = useState(false)
   return (
     <>
-      <Register setModoEditar={setModoEditar} modoEditar={modoEditar} usuarioEditar={usuarioEditar} setUsuarios={setUsuarios} usuarios={usuarios} id={id} setId={setId}/>
-      <UserList setModoEditar={setModoEditar} setUsuarioEditar={setUsuarioEditar} usuarios={usuarios} setUsuarios={setUsuarios}/>
+      <Register setModoEditar={setModoEditar} 
+      modoEditar={modoEditar} 
+      usuarioEditar={usuarioEditar} 
+      setUsuarios={setUsuarios} 
+      usuarios={usuarios} 
+      id={id} 
+      setId={setId}/>
+      <UserList 
+      setModoEditar={setModoEditar} 
+      setUsuarioEditar={setUsuarioEditar} 
+      usuarios={usuarios} 
+      setUsuarios={setUsuarios}/>
     </>
   );
 }
